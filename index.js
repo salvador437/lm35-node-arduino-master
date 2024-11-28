@@ -5,13 +5,13 @@ const SerialPort = require('serialport');
 
 const app = express();
 const server = http.createServer(app);
-const io = SocketIO.listen(server);
+
 
 app.use(express.static(__dirname + '/public'));
 server.listen(3000, () => console.log('server on port 3000'));
 
 
-const ReadLine = SerialPort.parsers.Readline;
+const ReadLine = SerialPort.parser.ReadLine();
 
 const port = new SerialPort("COM5", {
   baudRate: 9600
@@ -27,6 +27,6 @@ parser.on('data', function (data) {
   console.log(temp);
   io.emit('temp', data.toString());
 });
-
+const io = SocketIO.listen(server);
 parser.on('error', (err) => console.log(err));
 port.on('error', (err) => console.log(err));
