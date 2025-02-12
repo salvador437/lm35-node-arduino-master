@@ -3,6 +3,8 @@ const express = require('express');
 const SocketIO = require('socket.io');
 const path = require('path');
 const { SerialPort, ReadlineParser } = require('serialport');
+const fs = require('fs');
+
 const app = express();
 const server = http.createServer(app);
 const io = SocketIO(server);
@@ -12,53 +14,116 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/estilos', express.static(path.join(__dirname, 'public/estilos')));
 app.use('/imagenes', express.static(path.join(__dirname, 'public/imagenes')));
 
-
+let cont = 0;
 let port;
 let parser;
 
-try {
-  port = new SerialPort({
-    path: 'COM5',
-    baudRate: 9600,
-  });
+const setupSerialPort = () => {
+  try {
+    // Cerrar el puerto serial si ya está abierto
+    if (port && port.isOpen) {
+      port.close((err) => {
+        if (err) {
+          console.error('Error al cerrar el puerto:', err.message);
+        } else {
+          console.log('Puerto cerrado antes de reconectar');
+        }
+      });
+    }
 
-  parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+    // Crear una nueva instancia del puerto serial
+    port = new SerialPort({
+      path: 'COM5',
+      baudRate: 9600,
+    });
 
-  parser.on('open', function () {
-    console.log('conectado con arduino');
-  });
+    parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
-  parser.on('data', function (data) {
-    let temp = parseInt(data, 10) + " °C";
-    console.log(temp);
-    io.emit('temp', data.toString());
-  });
+    parser.on('open', () => {
+      console.log('Conectado con Arduino');
+      io.emit('status', 'Conectado'); // Notificar a los clientes
+    });
 
-  parser.on('error', (err) => {
-    console.log(err);
-    io.emit('error', 'Arduino desconectado');
-  });
+    // Manejar errores en el parser
+    parser.on('error', (err) => {
+      console.error('Error en el parser:', err.message);
+      handleSerialError(err);
+    });
 
-  port.on('error', function (err) {
-    console.log(err);
-    io.emit('error', 'Arduino desconectado');
-  });
-} catch (err) {
-  console.error('Error al conectar con el Arduino:', err.message);
-}
+    // Manejar errores en el puerto serial
+    port.on('error', (err) => {
+      console.error('Error en el puerto serial:', err.message);
+      handleSerialError(err);
+    });
 
+    // Capturar el evento de cierre del puerto (desconexión USB)
+    port.on('close', () => {
+      console.log('Puerto serial cerrado (USB desconectado)');
+      handleSerialError(new Error('Arduino desconectado'));
+    });
+
+    parser.on('data', (data) => {
+      if (cont < 65) {
+        const temp = `${parseInt(data, 10)} °C`;
+        console.log(temp);
+        io.emit('temp', data.toString());
+        fs.appendFileSync("temperatura.txt", `${data}\n`);
+        cont++;
+      } else {
+        closePort();
+      }
+    });
+
+  } catch (err) {
+    handleSerialError(err);
+  }
+};
+
+const handleSerialError = (err) => {
+  console.error('Error en el puerto serial:', err.message);
+  io.emit('error', 'Arduino desconectado');
+  io.emit('status', 'Desconectado'); // Notificar a los clientes
+};
+
+const closePort = () => {
+  if (port && port.isOpen) {
+    port.close((err) => {
+      if (err) {
+        console.error('Error al cerrar el puerto:', err.message);
+      } else {
+        console.log('Puerto cerrado');
+      }
+      io.emit('reload');
+    });
+  }
+};
+
+// Ruta para restablecer la conexión manualmente
+app.post('/reconnect', (req, res) => {
+  console.log('Reconexión solicitada manualmente');
+  setupSerialPort(); // Intentar reconectar
+  res.sendStatus(200); // Responder al cliente
+});
+
+// Iniciar la conexión con el puerto serial
+setupSerialPort();
+
+// Configuración de Socket.IO
 io.on('connection', (socket) => {
-  console.log('un cliente se ha conectado');
-  
+  console.log('Un cliente se ha conectado');
+
   socket.on('disconnect', () => {
-    console.log('cliente desconectado');
+    console.log('Cliente desconectado');
+    io.emit('reload');
   });
 
   socket.on('error', () => {
-    console.log('error en arduino');
+    console.log('Error en Arduino');
+    io.emit('reload');
   });
 });
 
+// Rutas
 app.get('/index.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -78,5 +143,5 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', 'error404.html'));
 });
 
-server.listen(3000, () => console.log('servidor en el puerto 3000'));
-
+// Iniciar el servidor
+server.listen(3000, () => console.log('Servidor en el puerto 3000'));

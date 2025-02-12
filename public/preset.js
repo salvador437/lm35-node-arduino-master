@@ -1,4 +1,3 @@
-// const fs = require("fs")
 
 const ffDe = document.getElementById("ff-de");
 const ffA = document.getElementById("ff-a");
@@ -23,13 +22,7 @@ lblfca.innerHTML= fcA.value;
 lblMayorDe.innerHTML = fsMayorDe.value;
 lblMayorDe.innerHTML = fsMayorDe.value;
 
-// Leer el archivo
-/* fs.readFile('variables.txt', 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error al leer el archivo:', err);
-    return;
-  }
-})   */
+
 
   // Dividir el contenido en valores
   /* const valores = data.split(',');

@@ -1,4 +1,3 @@
-
 html,
 body {
   display: flex;
@@ -9,7 +8,7 @@ body {
   user-select: none;
 }
 
-#boton-salir{
+#boton-salir {
   position: absolute;
   bottom: 40px;
   color: white;
@@ -17,14 +16,14 @@ body {
   font-size: 35px;
   border-radius: 20px;
   width: 150px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
 
 .titulo {
-  background-color: hsl(0, 0%, 0%,0.5) ;  
-  color:white;
+  background-color: hsl(0, 0%, 0%, 0.5);
+  color: white;
   padding: 20px;
   border-radius: 25px;
   margin-top: 10px;
@@ -33,8 +32,8 @@ body {
   padding-bottom: 20px;
 }
 
-.bd{
-  background: url('../imagenes/fondo-preset.jpg')  no-repeat center center fixed;
+.bd {
+  background: url("../imagenes/fondo-preset.jpg") no-repeat center center fixed;
   justify-content: center;
   align-items: center;
   color: rgb(37, 37, 37);
@@ -51,11 +50,11 @@ body {
 
 #lbl-ff-de,
 #lbl-ff-de-value,
-#lbl-ff-a{
+#lbl-ff-a {
   color: aqua;
 }
 
-.inputs[type=range]  {
+.inputs[type="range"] {
   display: flex;
   flex-direction: row;
   margin: 10px 25px;
@@ -73,9 +72,9 @@ body {
   justify-content: center;
   font-size: 35px;
   margin: 5px;
-  border: 4px solid rgb(70, 68, 68); 
+  border: 4px solid rgb(70, 68, 68);
   border-radius: 25px;
-  background-color: hsl(0, 0%, 0%, 0.5 ) ; 
+  background-color: hsl(0, 0%, 0%, 0.5);
   color: orangered;
   box-shadow: 0px 0px 25px #fff;
   width: 80%;
@@ -85,12 +84,8 @@ body {
   margin-top: 20px;
 }
 
-  
-
-
-.monitores{
+.monitores {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-

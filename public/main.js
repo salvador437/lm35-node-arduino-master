@@ -6,9 +6,31 @@ const fondo = document.getElementsByTagName('body')[0];
 const titulo = document.querySelector(".container p");
 const reloj = document.getElementById('reloj');
 
+// Actualizar el estado de conexión
+socket.on('status', (status) => {
+document.getElementById('status').textContent = `Estado: ${status}`;
+});
+
+document.getElementById('reconnect-btn').addEventListener('click', () => {
+  fetch('/reconnect', { method: 'POST' })
+    .then(response => {
+      if (response.ok) {
+        console.log('Reconexión solicitada');
+      } else {
+        console.error('Error al solicitar reconexión');
+      }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
 // Redirección al hacer clic en el botón
 boton.addEventListener("click", () => {
   window.location.href = "./preset.html";
+});
+
+// Manejar el evento de recarga desde el servidor
+socket.on('reload', () => {
+  location.reload();
 });
 
 // Manejo de errores de Arduino
@@ -59,3 +81,4 @@ function actualizarReloj() {
 
 // Iniciar el reloj
 actualizarReloj();
+

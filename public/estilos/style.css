@@ -11,34 +11,35 @@ body {
   user-select: none;
 }
 
-
-
 #boton-preset {
   position: absolute;
-  top: 40px;
+  top: 10px;
   color: white;
   border: 0em;
   background-color: #535252;
   font-size: 35px;
   border-radius: 20px;
   width: 150px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
 
-#boton-reset{
+
+
+#reconnect-btn{
+  position: absolute;
+  top: 90px;
   color: white;
   border: 0em;
   background-color: #535252;
   font-size: 35px;
   border-radius: 20px;
-  width: 150px;
-  &:hover{
+  width: 350px;
+  &:hover {
     cursor: pointer;
   }
 }
-
 
 .container {
   font-size: 55px;
@@ -46,11 +47,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 80%;
-  
 }
 
 #reloj {
-  margin: 80px auto;  
+  margin: 80px auto;
   font-size: 1em;
   font-weight: 600;
   text-align: center;
@@ -60,7 +60,7 @@ body {
   animation-iteration-count: infinite;
 }
 
-h1 #temperature{
+h1 #temperature {
   margin-top: 50px;
   font-size: 65px;
 }
@@ -68,12 +68,11 @@ h1 #temperature{
 .card #temperature {
   padding: 25px;
   margin-left: auto;
-  margin-right: auto;border-radius: 25px;
+  margin-right: auto;
+  border-radius: 25px;
 
   box-shadow: 0px 0px 25px #fff;
 }
-
-
 
 @keyframes parpadeo {
   100% {
@@ -102,7 +101,7 @@ h1 #temperature{
     font-size: 1.1em;
   }
 
-  .titulo{
+  .titulo {
     font-size: 50px;
   }
 
@@ -116,7 +115,7 @@ h1 #temperature{
     font-size: 40px;
   }
 
-  .titulo{
+  .titulo {
     font-size: 35px;
     margin-bottom: 100px;
   }
@@ -137,7 +136,7 @@ h1 #temperature{
     font-size: 26px;
   }
 
-  .titulo{
+  .titulo {
     font-size: 30px;
     margin-bottom: 100px;
   }
@@ -148,11 +147,8 @@ h1 #temperature{
     margin-top: 150px;
   }
 
-  
-
   #reloj {
     font-size: 0.4em;
     margin-bottom: 100px;
-
   }
 }
