@@ -40,7 +40,7 @@ const setupSerialPort = () => {
     parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
     parser.on('open', () => {
-      console.log('Conectado con Arduino');
+      console.log('Conectando con Arduino');
       io.emit('status', 'Conectado'); // Notificar a los clientes
     });
 
@@ -60,7 +60,7 @@ const setupSerialPort = () => {
     port.on('close', () => {
       console.log('Puerto serial cerrado (USB desconectado)');
       handleSerialError(new Error('Arduino desconectado'));
-      io.emit('status', 'Conectado');
+      io.emit('status', 'Desconectado');
     });
 
     parser.on('data', (data) => {
@@ -83,7 +83,7 @@ const setupSerialPort = () => {
 const handleSerialError = (err) => {
   console.error('Error en el puerto serial:', err.message);
   io.emit('error', 'Arduino desconectado');
-  io.emit('status', 'Desconectado'); // Notificar a los clientes
+  io.emit('status', 'desconectado'); // Notificar a los clientes
 };
 
 const closePort = () => {
@@ -117,7 +117,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('Cliente desconectado');
     io.emit('reload');
-    io.emit('status', 'Conectado');
+    io.emit('status', 'conectado');
   });
 
   socket.on('error', () => {

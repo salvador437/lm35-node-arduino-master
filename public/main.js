@@ -9,8 +9,9 @@ const statusElement = document.getElementById('status');
 
 
 socket.on('conectado', () => {
+  console.log('Evento conectado recibido'); // Depuración
   const statusElement = document.getElementById('status');
-  if (statusElement) {
+  if (statusElement ) {
     statusElement.textContent = 'Estado: Conectado';
   } else {
     console.error('Elemento con ID "status" no encontrado');
@@ -18,6 +19,7 @@ socket.on('conectado', () => {
 });
 
 socket.on('desconectado', () => {
+  console.log('EventoDesconectado" recibido'); // Depuración
   const statusElement = document.getElementById('status');
   if (statusElement) {
     statusElement.textContent = 'Estado: Desconectado';
