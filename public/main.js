@@ -56,7 +56,8 @@ socket.on('temp', (data) => {
   const temperatura = parseFloat(data).toFixed(1);
   temperatureDisplay.innerHTML = ` ${temperatura} °C`;
   reconnectButton.style.display = 'none';
-  statusElement.textContent = "Estado: Conectado"
+  statusElement.textContent = "Estado: Conectado";
+  statusElement.style.color = "white";
   if (temperatura > 30 && temperatura < 40) {
     actualizarEstilos('red', "url('./imagenes/calor-extremo.jpg')", '🔥');
   } else if (temperatura > 25 && temperatura < 30) {

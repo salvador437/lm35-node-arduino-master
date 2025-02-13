@@ -67,9 +67,12 @@ const setupSerialPort = () => {
       const temp = `${parseInt(data, 10)} °C`;
         console.log(temp);
         io.emit('temp', data.toString());
-      if (cont < 65) {
+      if (cont <= 60) {
+        const ahora = new Date();
+        const fecha = `${String(ahora.getDate()).padStart(2, '0')}/${String(ahora.getMonth() + 1).padStart(2, '0')}/${ahora.getFullYear()}`;
+        const hora = `${String(ahora.getHours()).padStart(2, '0')}:${String(ahora.getMinutes()).padStart(2, '0')}:${String(ahora.getSeconds()).padStart(2, '0')}`;
+        fs.appendFileSync("temperatura.txt", `🥵${temp}  📅${fecha}   ⌚${hora}  \n`);
         
-        fs.appendFileSync("temperatura.txt", `${data}\n`);
         cont++;
       } else {
         

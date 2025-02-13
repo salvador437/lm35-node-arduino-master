@@ -16,7 +16,7 @@ body {
   top: 10px;
   color: white;
   border: 1px solid #aaa;
-  background-color: #535252;
+  background-color: transparent;
   font-size: 25px;
   border-radius: 20px;
   width: 200px;
@@ -36,6 +36,7 @@ body {
   background-color: #535252;
   font-size: 25px;
   border-radius: 20px;
+  padding-left: 15px;
   width: 250px;
   &:hover {
     cursor: pointer;
