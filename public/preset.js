@@ -15,12 +15,11 @@ const botonSalir = document.getElementById("boton-salir")
 
 const contenido = `${ffDe.value},${ffA.value},${fcDe.value},${fcA.value},${fsMayorDe.value}`;
 // condiciones iniciales
-lblffdevalue.innerHTML = "0" + ffDe.value
-lblffA.innerHTML= "0" + ffA.value
-lblfcde.innerHTML = fcDe.value;
-lblfca.innerHTML= fcA.value;
-lblMayorDe.innerHTML = fsMayorDe.value;
-lblMayorDe.innerHTML = fsMayorDe.value;
+lblffdevalue.innerHTML = "0" + ffDe.value + "°C"
+lblffA.innerHTML= "0" + ffA.value + "°C"
+lblfcde.innerHTML = fcDe.value + "°C"; 
+lblfca.innerHTML= fcA.value + "°C"; 
+lblMayorDe.innerHTML = fsMayorDe.value + "°C"; 
 
 
 
@@ -39,68 +38,76 @@ botonSalir.addEventListener("click",()=>{
 
 ffDe.addEventListener("mousemove", ()=>{
   if(ffDe.value < 10){
-    lblffdevalue.innerHTML = "0" + ffDe.value ;
+    lblffdevalue.innerHTML = "0" + ffDe.value + "°C" ;
   }else{
-    lblffdevalue.innerHTML = ffDe.value
+    lblffdevalue.innerHTML = ffDe.value + "°C"
   }
 }) 
 
 ffDe.addEventListener("change", ()=>{
   if(ffDe.value < 10){
-    lblffdevalue.innerHTML = "0" + ffDe.value ;
+    lblffdevalue.innerHTML = "0" + ffDe.value + "°C" ;
   }else{
-    lblffdevalue.innerHTML = ffDe.value
+    lblffdevalue.innerHTML = ffDe.value + "°C"
   }
 }) 
 
 ffA.addEventListener("mousemove", ()=>{
   if(ffA.value < 10){
-    lblffA.innerHTML = "0" + ffA.value ;
+    lblffA.innerHTML = "0" + ffA.value + "°C" ;
   }else{ 
-    lblffA.innerHTML= ffA.value
+    lblffA.innerHTML= ffA.value + "°C"
   }  
 }) 
 
 ffA.addEventListener("change", ()=>{
   if(ffA.value < 10){
-    lblffA.innerHTML = "0" + ffA.value ;
+    lblffA.innerHTML = "0" + ffA.value + "°C" ;
   }else{ 
-    lblffA.innerHTML= ffA.value;
+    lblffA.innerHTML= ffA.value + "°C"
   }  
 })
 
 
 fcDe.addEventListener("mousemove", ()=>{
   if(fcDe.value < 10){
-    lblfcde.innerHTML = "0" + fcDe.value ;
+    lblfcde.innerHTML = "0" + fcDe.value + "°C" ;
   }else{
-    lblfcde.innerHTML = fcDe.value;
+    lblfcde.innerHTML = fcDe.value + "°C";
   }
 })  
 
 fcDe.addEventListener("change", ()=>{
   if(fcDe.value < 10){
-    lblfcde.innerHTML = "0" + fcDe.value ;
+    lblfcde.innerHTML = "0" + fcDe.value + "°C";
   }else{
-    lblfcde.innerHTML = fcDe.value;
+    lblfcde.innerHTML = fcDe.value + "°C";
   }
 })
 
 
 fcA.addEventListener("mousemove", ()=>{
-  lblfca.innerHTML= fcA.value;
+  if(fcA.value < 10){
+    lblfca.innerHTML = "0" + fcA.value + "°C";
+  }else{
+    lblfca.innerHTML = fcA.value + "°C";
+  }
 }) 
 
 fcA.addEventListener("change", ()=>{
-  lblfca.innerHTML= fcA.value;
+  if(fcA.value < 10){
+    lblfca.innerHTML = "0" + fcA.value + "°C";
+  }else{
+    lblfca.innerHTML = fcA.value + "°C";
+  }
 })
 
 fsMayorDe.addEventListener("mousemove", ()=>{
-  lblMayorDe.innerHTML = fsMayorDe.value;
+  lblMayorDe.innerHTML = fsMayorDe.value + "°C";
 }) 
-
+j
 fsMayorDe.addEventListener("change", ()=>{
-  lblMayorDe.innerHTML = fsMayorDe.value;
+  lblMayorDe.innerHTML = fsMayorDe.value + "°C";
 }) 
 
 
