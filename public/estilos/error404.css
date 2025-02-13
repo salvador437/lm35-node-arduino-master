@@ -38,6 +38,7 @@ p {
 a {
   font-size: 2rem;
   color: var(--a-color);
+  text-decoration: none;
   &:hover{
     color: var(--a-hover-color);
   }
