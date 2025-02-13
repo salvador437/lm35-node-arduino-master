@@ -1,6 +1,6 @@
 const socket = io();
 const boton = document.getElementById("boton-preset");
-const botonReset = document.getElementById("boton-reset");
+const reconnectButton = document.getElementById('reconnect-btn');
 const temperatureDisplay = document.getElementById('temperature');
 const fondo = document.getElementsByTagName('body')[0];
 const titulo = document.querySelector(".container p");
@@ -8,28 +8,14 @@ const reloj = document.getElementById('reloj');
 const statusElement = document.getElementById('status');
 
 
-socket.on('conectado', () => {
-  console.log('Evento conectado recibido'); // Depuración
-  const statusElement = document.getElementById('status');
-  if (statusElement ) {
-    statusElement.textContent = 'Estado: Conectado';
-  } else {
-    console.error('Elemento con ID "status" no encontrado');
-  }
-});
 
-socket.on('desconectado', () => {
-  console.log('EventoDesconectado" recibido'); // Depuración
-  const statusElement = document.getElementById('status');
-  if (statusElement) {
-    statusElement.textContent = 'Estado: Desconectado';
-  } else {
-    console.error('Elemento con ID "status" no encontrado');
-  }
-});
 
-const reconnectButton = document.getElementById('reconnect-btn');
+
+
+
 if (reconnectButton) {
+  reconnectButton.style.display = 'flex';
+  statusElement.textContent = "Estado: Desconectado"
   reconnectButton.addEventListener('click', () => {
     fetch('/reconnect', { method: 'POST' })
       .then(response => {
@@ -60,6 +46,7 @@ socket.on('error', () => mostrarError());
 
 function mostrarError() {
   temperatureDisplay.innerHTML = 'Arduino desconectado';
+  reconnectButton.style.display = 'flex';
   temperatureDisplay.style.fontSize = '20px';
   window.open("./error404.html","_self","",true);
 }
@@ -68,7 +55,8 @@ function mostrarError() {
 socket.on('temp', (data) => {
   const temperatura = parseFloat(data).toFixed(1);
   temperatureDisplay.innerHTML = ` ${temperatura} °C`;
-
+  reconnectButton.style.display = 'none';
+  statusElement.textContent = "Estado: Conectado"
   if (temperatura > 30 && temperatura < 40) {
     actualizarEstilos('red', "url('./imagenes/calor-extremo.jpg')", '🔥');
   } else if (temperatura > 25 && temperatura < 30) {

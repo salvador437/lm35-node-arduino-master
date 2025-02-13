@@ -41,7 +41,7 @@ const setupSerialPort = () => {
 
     parser.on('open', () => {
       console.log('Conectando con Arduino');
-      io.emit('status', 'Conectado'); // Notificar a los clientes
+       // Notificar a los clientes
     });
 
     // Manejar errores en el parser
@@ -60,18 +60,19 @@ const setupSerialPort = () => {
     port.on('close', () => {
       console.log('Puerto serial cerrado (USB desconectado)');
       handleSerialError(new Error('Arduino desconectado'));
-      io.emit('status', 'Desconectado');
+      
     });
 
     parser.on('data', (data) => {
-      if (cont < 65) {
-        const temp = `${parseInt(data, 10)} °C`;
+      const temp = `${parseInt(data, 10)} °C`;
         console.log(temp);
         io.emit('temp', data.toString());
+      if (cont < 65) {
+        
         fs.appendFileSync("temperatura.txt", `${data}\n`);
         cont++;
       } else {
-        closePort();
+        
       }
     });
 
@@ -83,7 +84,7 @@ const setupSerialPort = () => {
 const handleSerialError = (err) => {
   console.error('Error en el puerto serial:', err.message);
   io.emit('error', 'Arduino desconectado');
-  io.emit('status', 'desconectado'); // Notificar a los clientes
+  // Notificar a los clientes
 };
 
 const closePort = () => {
@@ -95,7 +96,7 @@ const closePort = () => {
         console.log('Puerto cerrado');
       }
       io.emit('reload');
-      io.emit('status', 'desconectado');
+      
     });
   }
 };
@@ -117,13 +118,13 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('Cliente desconectado');
     io.emit('reload');
-    io.emit('status', 'conectado');
+    
   });
 
   socket.on('error', () => {
     console.log('Error en Arduino');
     io.emit('reload');
-    io.emit('status', 'desconectado');
+    
   });
 });
 
