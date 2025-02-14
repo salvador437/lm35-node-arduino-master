@@ -13,7 +13,7 @@ const lblMayorDe = document.getElementById("lbl-mayor-de");
 const botonSalir = document.getElementById("boton-salir");
 
 // condiciones iniciales
-
+// recogidas del localStorage
 ffDe.value = localStorage.getItem("ffDe");
 ffA.value = localStorage.getItem("ffA");
 fcDe.value = localStorage.getItem("fcDe");
@@ -27,8 +27,6 @@ lblfca.innerHTML = fcA.value + "°C";
 lblMayorDe.innerHTML = fsMayorDe.value + "°C";
 
 botonSalir.addEventListener("click", () => {
-  localStorage.setItem("ffDe", ffDe.value);
-  localStorage.setItem("ffA", ffA.value);
   window.open("./index.html", "_self", "", true);
 });
 
