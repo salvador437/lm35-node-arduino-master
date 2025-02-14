@@ -7,7 +7,7 @@ const titulo = document.querySelector(".container p");
 const reloj = document.getElementById("reloj");
 const statusElement = document.getElementById("status");
 
-let ffDe = parseInt(localStorage.getItem("fcDe"));
+let ffDe = parseInt(localStorage.getItem("ffDe"));
 let ffA = parseInt(localStorage.getItem("ffA"));
 let fcDe = parseInt(localStorage.getItem("fcDe"));
 let fcA = parseInt(localStorage.getItem("fcA"));
@@ -63,7 +63,7 @@ socket.on("temp", (data) => {
   } else if (temperatura > fcA && temperatura < fsMayorDe) {
     actualizarEstilos("orangered", "url('./imagenes/fondo-calor.jpg')", "🥵");
   } else if (temperatura < fcA && temperatura > fcDe) {
-    actualizarEstilos("cyan", "url('./imagenes/fondo.jpg')", "😎");
+    actualizarEstilos("white", "url('./imagenes/fondo.jpg')", "😎");
   } else if (temperatura < ffA) {
     actualizarEstilos("blue", "url('./imagenes/fondo-frio.jpg')", "🥶");
   }
@@ -76,9 +76,7 @@ function actualizarEstilos(color, imagen, emoji) {
   titulo.style.color = color;
   reloj.style.color = color;
   temperatureDisplay.style.border = `2px solid ${color}`;
-  temperatureDisplay.innerHTML = ` ${parseFloat(
-    temperatureDisplay.innerHTML
-  )} °C ${emoji}`;
+  temperatureDisplay.innerHTML = ` ${parseFloat(temperatureDisplay.innerHTML)} °C ${emoji}`;
 }
 
 // Función para actualizar el reloj

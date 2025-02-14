@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/estilos", express.static(path.join(__dirname, "public/estilos")));
 app.use("/imagenes", express.static(path.join(__dirname, "public/imagenes")));
 
+
 let cont = 0;
 let port;
 let parser;
