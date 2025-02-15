@@ -67,8 +67,10 @@ const setupSerialPort = () => {
       const temp = `${parseInt(data, 10)} °C`;
       console.log(temp);
       io.emit("temp", data.toString());
-      if (cont <= 60) {
+
+      if (fs.existsSync("./temperatura.txt")) {
         const ahora = new Date();
+        if(cont>= 60) {return}
         const fecha = `${String(ahora.getDate()).padStart(2, "0")}/${String(
           ahora.getMonth() + 1
         ).padStart(2, "0")}/${ahora.getFullYear()}`;
@@ -79,9 +81,10 @@ const setupSerialPort = () => {
           "temperatura.txt",
           `🥵${temp}  📅${fecha}   ⌚${hora}  \n`
         );
-
+        
         cont++;
       } else {
+        fs.writeFileSync("./temperatura.txt","");
       }
     });
   } catch (err) {
