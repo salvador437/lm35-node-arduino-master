@@ -42,7 +42,6 @@ const setupSerialPort = () => {
 
     parser.on("open", () => {
       console.log("Conectando con Arduino");
-      // Notificar a los clientes
     });
 
     // Manejar errores en el parser
@@ -81,7 +80,6 @@ const setupSerialPort = () => {
           "temperatura.txt",
           `🥵${temp}  📅${fecha}   ⌚${hora}  \n`
         );
-        
         cont++;
       } else {
         fs.writeFileSync("./temperatura.txt","");
@@ -95,7 +93,6 @@ const setupSerialPort = () => {
 const handleSerialError = (err) => {
   console.error("Error en el puerto serial:", err.message);
   io.emit("error", "Arduino desconectado");
-  // Notificar a los clientes
 };
 
 const closePort = () => {
@@ -114,8 +111,8 @@ const closePort = () => {
 // Ruta para restablecer la conexión manualmente
 app.post("/reconnect", (req, res) => {
   console.log("Reconexión solicitada manualmente");
-  setupSerialPort(); // Intentar reconectar
-  res.sendStatus(200); // Responder al cliente
+  setupSerialPort(); 
+  res.sendStatus(200);
 });
 
 // Iniciar la conexión con el puerto serial

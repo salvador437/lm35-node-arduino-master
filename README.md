@@ -40,4 +40,4 @@ La pantalla de inicio o de entrada, es dependiente de la temperatura y está div
 
 ![alt text](public/imagenes/error-puerto.PNG)
 
-despues de ver esta pantalla tendra qu reiniciar la aplicacion de nuevo.
+despues de ver esta pantalla tendra que reiniciar la aplicacion de nuevo.
