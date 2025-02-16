@@ -145,7 +145,7 @@ app.get("/error404.html", (req, res) => {
 // Middleware para manejar errores y redirigir a error404.html
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).sendFile(path.join(__dirname, "public", "error404.html"));
+  res.status(400).sendFile(path.join(__dirname, "public", "error404.html"));
 });
 
 // Middleware para manejar rutas no encontradas y redirigir a error404.html
