@@ -1,3 +1,4 @@
+//48e29ad0a3bb4b4794991617251802  weather key
 const socket = io();
 const boton = document.getElementById("boton-preset");
 const reconnectButton = document.getElementById("reconnect-btn");
