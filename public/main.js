@@ -1,8 +1,10 @@
 //48e29ad0a3bb4b4794991617251802  weather key
 const socket = io();
 const boton = document.getElementById("boton-preset");
+const botonExterior = document.getElementById("btn-exterior");
+
 const reconnectButton = document.getElementById("reconnect-btn");
-const temperatureDisplay = document.getElementById("temperature");
+const temperatureDisplay = document.getElementById("temperature")
 const fondo = document.getElementsByTagName("body")[0];
 const titulo = document.querySelector(".container p");
 const reloj = document.getElementById("reloj");
@@ -34,6 +36,10 @@ if (reconnectButton) {
 // Redirección al hacer clic en el botón
 boton.addEventListener("click", () => {
   window.location.href = "./preset.html";
+});
+
+botonExterior.addEventListener("click", () => {
+  window.location.href = "./weather.html";
 });
 
 // Manejar el evento de recarga desde el servidor

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./imagenes/favicon.png">
+  <link rel="stylesheet" href="./estilos/weather.css">
+  <title>Obtener Temperatura</title>
+</head>
+<body>
+<div class="container">  
+  <div class="titulo">
+    <h1>Estación metereologica externa desde API Visual Crossing <span id="internet">📶</span> </h1>
+  </div>
+  <div class="btn-inp">
+    <input type="text" id="cityInput" placeholder="Ingresa el nombre de la ciudad">
+    <button onclick="getTemperature()">Obtener Temperatura</button>
+</div>
+<div class="parrafos">
+    <p id="result"></p>
+    <p id="humedad"></p>
+    <p id="latitud"></p>
+    <p id="longitud"></p>
+    <p id="zona-horaria"></p>
+  </div>    
+</div>  
+  <script src="./weather.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

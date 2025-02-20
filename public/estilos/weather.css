@@ -1,0 +1,91 @@
+html {
+  background-color: rgb(9, 9, 167);
+  color: white;
+}
+
+h1 {
+  margin: 15px auto;
+}
+
+p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 10px;
+}
+
+input,
+button {
+  width: 230px;
+  font-size: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.btn-inp {
+  display: contents;
+  flex-direction: column;
+  width: 60%;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 1.3em;
+  border: 2px solid white;
+  border-radius: 25px;
+  box-shadow: 0 0 30px white;
+}
+
+.parrafos {
+  border: 2px solid white;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px white;
+}
+
+#internet,
+.parrafos {
+  visibility: hidden;
+}
+
+@media (max-width: 992px) {
+  h1,
+  .parrafos {
+    font-size: 1.3em;
+  }
+
+  .parrafos {
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 768px) {
+  h1,
+  .parrafos {
+    font-size: 0.9em;
+  }
+
+  .parrafos {
+    font-size: 0.5em;
+  }
+}

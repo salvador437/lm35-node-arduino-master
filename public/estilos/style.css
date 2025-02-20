@@ -42,6 +42,26 @@ body {
   }
 }
 
+#btn-exterior{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 130px;
+  
+  color: white;
+  border: 1px solid #aaa;
+  background-color: transparent;
+  font-size: 25px;
+  border-radius: 20px;
+  padding-left: 15px;
+  width: 250px;
+  &:hover {
+    cursor: pointer;
+    background-color: #333;
+  }
+}
+
+
 .container {
   font-size: 55px;
   text-align: center;
@@ -109,7 +129,7 @@ h1 #temperature {
   }
 
   .titulo {
-    font-size: 35px;
+    visibility: hidden;
     margin-bottom: 100px;
   }
 
@@ -130,7 +150,7 @@ h1 #temperature {
   }
 
   .titulo {
-    font-size: 30px;
+    visibility: hidden;
     margin-bottom: 100px;
   }
 

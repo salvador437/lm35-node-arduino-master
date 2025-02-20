@@ -138,6 +138,10 @@ app.get("/index.html", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+app.get("/weather.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "weather.html"));
+});
+
 app.get("/error404.html", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "error404.html"));
 });
