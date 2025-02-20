@@ -1,3 +1,6 @@
+
+
+
 const city = document.getElementById("cityInput");
 const parrafos = document.querySelector(".parrafos");
 
@@ -21,7 +24,7 @@ async function getTemperature() {
     }
 }
 
-// Verificar la conexión cada  segundo
+// Verificar la conexión cada  segundo  53290579Q jav
 setInterval(checkInternetConnection, 1000);
 checkInternetConnection(); 
 
@@ -50,7 +53,7 @@ checkInternetConnection();
     const cityName = data.address;
 
     const temperaturaCelsius = (((temperature - 32) * 5) / 9).toFixed(2);
-
+    
     document.getElementById(
       "result"
     ).textContent = `La temperatura en ${cityName} es de ${temperaturaCelsius}°C.`;
