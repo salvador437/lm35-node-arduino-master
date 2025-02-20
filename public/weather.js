@@ -1,11 +1,10 @@
 
 
-
 const city = document.getElementById("cityInput");
 const parrafos = document.querySelector(".parrafos");
 
-cityInput.addEventListener("focus", () => {
-  cityInput.value = "";
+city.addEventListener("focus", () => {
+  city.value = "";
 });
 
 async function getTemperature() {
@@ -20,7 +19,7 @@ async function getTemperature() {
     } catch (error) {
         internet.style.visibility = "hidden";
         parrafos.style.visibility = "hidden";
-        alert("Sin internet, revise su conexión")
+        
     }
 }
 
@@ -36,6 +35,8 @@ checkInternetConnection();
   try {
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=CZVCNYPB7647GR77JR53L8QH6`
+
+      /* `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/41.6154,2.08601?key=CZVCNYPB7647GR77JR53L8QH6` */
     );
 
     if (!response.ok) {
@@ -51,6 +52,8 @@ checkInternetConnection();
     const longitud = data.longitude;
     const zonaHoraria = data.timezone;
     const cityName = data.address;
+
+    
 
     const temperaturaCelsius = (((temperature - 32) * 5) / 9).toFixed(2);
     
@@ -69,8 +72,17 @@ checkInternetConnection();
     document.getElementById(
       "zona-horaria"
     ).textContent = `La zona horaria es de ${zonaHoraria} `;
+
+    localStorage.setItem("temp-ext",temperaturaCelsius)
+    localStorage.setItem("humedad",humedad)
+    localStorage.setItem("cityName",cityName)
+    localStorage.setItem("latitud",latitud)
+    localStorage.setItem("longitud",longitud)
+    localStorage.setItem("Zona-horaria",zonaHoraria)
+
   } catch (error) {
     document.getElementById("result").textContent =
       "No se pudo obtener la temperatura. Verifica el nombre de la ciudad o la API key.";
   }
 }
+

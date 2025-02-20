@@ -1,4 +1,6 @@
 //48e29ad0a3bb4b4794991617251802  weather key
+
+
 const socket = io();
 const boton = document.getElementById("boton-preset");
 const botonExterior = document.getElementById("btn-exterior");
@@ -15,6 +17,7 @@ let ffA = parseInt(localStorage.getItem("ffA"));
 let fcDe = parseInt(localStorage.getItem("fcDe"));
 let fcA = parseInt(localStorage.getItem("fcA"));
 let fsMayorDe = parseInt(localStorage.getItem("fsMayorDe"));
+let tempExterior = localStorage.getItem("temp-ext")
 
 if (reconnectButton) {
   reconnectButton.style.display = "flex";
@@ -83,7 +86,7 @@ function actualizarEstilos(color, imagen, emoji) {
   titulo.style.color = color;
   reloj.style.color = color;
   temperatureDisplay.style.border = `2px solid ${color}`;
-  temperatureDisplay.innerHTML = ` ${parseFloat(temperatureDisplay.innerHTML)} °C ${emoji}`;
+  temperatureDisplay.innerHTML = ` ${parseFloat(temperatureDisplay.innerHTML)} °C ${emoji} ext ${tempExterior} °C`;
 }
 
 // Función para actualizar el reloj
@@ -96,9 +99,10 @@ function actualizarReloj() {
     ahora.getMinutes()
   ).padStart(2, "0")}:${String(ahora.getSeconds()).padStart(2, "0")}`;
 
-  reloj.innerHTML = `📅 ${fecha}   ⌚${hora}`;
+  reloj.innerHTML = `📅 ${fecha}   ⌚${hora}  `;
   setTimeout(actualizarReloj, 1000);
 }
 
 // Iniciar el reloj
 actualizarReloj();
+
