@@ -1,10 +1,11 @@
-//48e29ad0a3bb4b4794991617251802  weather key
+//48e29ad0a3bb4b4794991617251802  weather key de openweather
+// key=CZVCNYPB7647GR77JR53L8QH6  weather key de visualcrossing
 
 const socket = io();
-const boton = document.getElementById("boton-preset");
+const boton = document.getElementById("btn-preset");
 const botonExterior = document.getElementById("btn-exterior");
 
-const reconnectButton = document.getElementById("reconnect-btn");
+const reconnectButton = document.getElementById("btn-reconnect");
 const temperatureDisplay = document.getElementById("temperature")
 const fondo = document.getElementsByTagName("body")[0];
 const titulo = document.querySelector(".container p");
@@ -41,6 +42,7 @@ boton.addEventListener("click", (event) => {
   window.location.href = "./preset.html";
 });
 
+// Redirección al hacer clic en el botón
 botonExterior.addEventListener("click", (event) => {
   event.preventDefault();
   window.location.href = "./weather.html";
@@ -55,6 +57,7 @@ socket.on("reload", () => {
 socket.on("err", () => mostrarError());
 socket.on("error", () => mostrarError());
 
+// Función para mostrar un error
 function mostrarError() {
   temperatureDisplay.innerHTML = "Arduino desconectado";
   reconnectButton.style.display = "flex";
@@ -100,7 +103,7 @@ function actualizarReloj() {
     ahora.getMinutes()
   ).padStart(2, "0")}:${String(ahora.getSeconds()).padStart(2, "0")}`;
 
-  reloj.innerHTML = `📅 ${fecha}   ⌚${hora}  `;
+  reloj.innerHTML = `📅 ${fecha}   ⌚${hora}`;
   setTimeout(actualizarReloj, 1000);
 }
 

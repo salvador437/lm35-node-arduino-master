@@ -11,7 +11,7 @@ body {
   user-select: none;
 }
 
-#boton-preset {
+#btn-preset {
   position: absolute;
   top: 10px;
   color: white;
@@ -26,7 +26,7 @@ body {
   }
 }
 
-#reconnect-btn {
+#btn-reconnect {
   position: absolute;
   top: 90px;
   color: white;
