@@ -1,31 +1,29 @@
-
-
 const city = document.getElementById("cityInput");
 const parrafos = document.querySelector(".parrafos");
 
-city.addEventListener("focus", () => {
+city.addEventListener("click", (event) => {
+  event.preventDefault();
   city.value = "";
 });
 
+async function checkInternetConnection() {
+    try {
+      await fetch("https://www.google.com", { mode: "no-cors" });
+      internet.style.visibility = "visible";
+      parrafos.style.visibility = "visible";
+      return;
+    } catch (error) {
+      internet.style.visibility = "hidden";
+      parrafos.style.visibility = "hidden";
+    }
+  }
+
+  // Verificar la conexión cada  segundo  53290579Q jav
+  setInterval(checkInternetConnection, 1000);
+  checkInternetConnection();
+
 async function getTemperature() {
   const city = document.getElementById("cityInput").value;
-  const internet = document.getElementById("internet");
-
-  async function checkInternetConnection() {
-    try {
-        await fetch('https://www.google.com', { mode: 'no-cors' });
-        internet.style.visibility = "visible";
-        parrafos.style.visibility = "visible";
-    } catch (error) {
-        internet.style.visibility = "hidden";
-        parrafos.style.visibility = "hidden";
-        
-    }
-}
-
-// Verificar la conexión cada  segundo  53290579Q jav
-setInterval(checkInternetConnection, 1000);
-checkInternetConnection(); 
 
   if (!city) {
     alert("Por favor, ingresa el nombre de una ciudad.");
@@ -36,7 +34,7 @@ checkInternetConnection();
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=CZVCNYPB7647GR77JR53L8QH6`
 
-      /* `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/41.6154,2.08601?key=CZVCNYPB7647GR77JR53L8QH6` */
+      /* `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city},41.6154,2.08601?key=CZVCNYPB7647GR77JR53L8QH6` */
     );
 
     if (!response.ok) {
@@ -53,10 +51,8 @@ checkInternetConnection();
     const zonaHoraria = data.timezone;
     const cityName = data.address;
 
-    
+    const temperaturaCelsius = (((temperature - 32) * 5) / 9).toFixed(1);
 
-    const temperaturaCelsius = (((temperature - 32) * 5) / 9).toFixed(2);
-    
     document.getElementById(
       "result"
     ).textContent = `La temperatura en ${cityName} es de ${temperaturaCelsius}°C.`;
@@ -73,16 +69,14 @@ checkInternetConnection();
       "zona-horaria"
     ).textContent = `La zona horaria es de ${zonaHoraria} `;
 
-    localStorage.setItem("temp-ext",temperaturaCelsius)
-    localStorage.setItem("humedad",humedad)
-    localStorage.setItem("cityName",cityName)
-    localStorage.setItem("latitud",latitud)
-    localStorage.setItem("longitud",longitud)
-    localStorage.setItem("Zona-horaria",zonaHoraria)
-
+    localStorage.setItem("temp-ext", temperaturaCelsius);
+    localStorage.setItem("humedad", humedad);
+    localStorage.setItem("cityName", cityName);
+    localStorage.setItem("latitud", latitud);
+    localStorage.setItem("longitud", longitud);
+    localStorage.setItem("Zona-horaria", zonaHoraria);
   } catch (error) {
     document.getElementById("result").textContent =
       "No se pudo obtener la temperatura. Verifica el nombre de la ciudad o la API key.";
   }
 }
-

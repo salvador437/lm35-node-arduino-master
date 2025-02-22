@@ -1,6 +1,5 @@
 //48e29ad0a3bb4b4794991617251802  weather key
 
-
 const socket = io();
 const boton = document.getElementById("boton-preset");
 const botonExterior = document.getElementById("btn-exterior");
@@ -37,11 +36,13 @@ if (reconnectButton) {
   console.error('Elemento con ID "reconnect-btn" no encontrado');
 }
 // Redirección al hacer clic en el botón
-boton.addEventListener("click", () => {
+boton.addEventListener("click", (event) => {
+  event.preventDefault();
   window.location.href = "./preset.html";
 });
 
-botonExterior.addEventListener("click", () => {
+botonExterior.addEventListener("click", (event) => {
+  event.preventDefault();
   window.location.href = "./weather.html";
 });
 
