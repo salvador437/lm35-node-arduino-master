@@ -34,7 +34,7 @@ if (reconnectButton) {
       .catch((error) => console.error("Error:", error));
   });
 } else {
-  console.error('Elemento con ID "reconnect-btn" no encontrado');
+  console.error('Elemento con ID "btn-reconnect" no encontrado');
 }
 // Redirección al hacer clic en el botón
 boton.addEventListener("click", (event) => {

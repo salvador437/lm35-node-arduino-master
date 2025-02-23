@@ -52,7 +52,9 @@ async function getTemperature() {
     const cityName = data.address;
 
     const temperaturaCelsius = (((temperature - 32) * 5) / 9).toFixed(1);
-
+    
+    
+    
     document.getElementById(
       "result"
     ).textContent = `La temperatura en ${cityName} es de ${temperaturaCelsius}°C.`;
@@ -75,8 +77,12 @@ async function getTemperature() {
     localStorage.setItem("latitud", latitud);
     localStorage.setItem("longitud", longitud);
     localStorage.setItem("Zona-horaria", zonaHoraria);
+
+    window.open(`https://www.google.com/maps?q=${latitud},${longitud}`,"_self","",true);
+
   } catch (error) {
     document.getElementById("result").textContent =
       "No se pudo obtener la temperatura. Verifica el nombre de la ciudad o la API key.";
   }
 }
+  
