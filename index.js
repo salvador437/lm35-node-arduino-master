@@ -17,7 +17,7 @@ app.use("/imagenes", express.static(path.join(__dirname, "public/imagenes")));
 
 let cont = 0;
 let port;
-let parser;
+let arduinoUno;
 
 const setupSerialPort = () => {
   try {
@@ -38,14 +38,14 @@ const setupSerialPort = () => {
       baudRate: 9600,
     });
 
-    parser = port.pipe(new ReadlineParser({ delimiter: "\r\n" }));
+    arduinoUno = port.pipe(new ReadlineParser({ delimiter: "\r\n" }));
 
-    parser.on("open", () => {
+    arduinoUno.on("open", () => {
       console.log("Conectando con Arduino");
     });
 
     // Manejar errores en el parser
-    parser.on("error", (err) => {
+    arduinoUno.on("error", (err) => {
       console.error("Error en el parser:", err.message);
       handleSerialError(err);
     });
@@ -62,7 +62,7 @@ const setupSerialPort = () => {
       handleSerialError(new Error("Arduino desconectado"));
     });
 
-    parser.on("data", (data) => {
+    arduinoUno.on("data", (data) => {
       const temp = `${parseInt(data, 10)} °C`;
       console.log(temp);
       io.emit("temp", data.toString());

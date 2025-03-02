@@ -18,6 +18,7 @@ let fcDe = parseInt(localStorage.getItem("fcDe"));
 let fcA = parseInt(localStorage.getItem("fcA"));
 let fsMayorDe = parseInt(localStorage.getItem("fsMayorDe"));
 let tempExterior = localStorage.getItem("temp-ext")
+let ciudad = localStorage.getItem("cityName");
 
 if (reconnectButton) {
   reconnectButton.style.display = "flex";
@@ -103,7 +104,7 @@ function actualizarReloj() {
     ahora.getMinutes()
   ).padStart(2, "0")}:${String(ahora.getSeconds()).padStart(2, "0")}`;
 
-  reloj.innerHTML = `📅 ${fecha}   ⌚${hora}`;
+  reloj.innerHTML = `📅 ${fecha}   ⌚${hora}  🌐 ${ciudad}`;
   setTimeout(actualizarReloj, 1000);
 }
 

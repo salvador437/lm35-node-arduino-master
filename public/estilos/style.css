@@ -15,11 +15,11 @@ body {
   position: absolute;
   top: 10px;
   color: white;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   background-color: transparent;
   font-size: 25px;
   border-radius: 20px;
-  width: 200px;
+  width: 250px;
   &:hover {
     cursor: pointer;
     background-color: #333;
@@ -28,9 +28,9 @@ body {
 
 #btn-reconnect {
   position: absolute;
-  top: 90px;
+  top: 50px;
   color: white;
-  border: 1px solid #aaa;
+  border: 2px solid #fff;
   background-color: transparent;
   font-size: 25px;
   border-radius: 20px;
@@ -42,14 +42,14 @@ body {
   }
 }
 
-#btn-exterior{
+#btn-exterior {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 130px;
-  
+  top: 90px;
+
   color: white;
-  border: 1px solid #aaa;
+  border: 2px solid #fff;
   background-color: transparent;
   font-size: 25px;
   border-radius: 20px;
@@ -61,6 +61,12 @@ body {
   }
 }
 
+#status {
+  position: absolute;
+  top: 175px;
+  color: white;
+  font-size: 35px;
+}
 
 .container {
   font-size: 55px;
@@ -86,8 +92,8 @@ h1 #temperature {
   padding: 25px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 25px;
-
+  border-radius: 150px;
+  background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 25px #fff;
 }
 
