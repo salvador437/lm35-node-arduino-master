@@ -37,13 +37,13 @@ if (reconnectButton) {
 } else {
   console.error('Elemento con ID "btn-reconnect" no encontrado');
 }
-// Redirección al hacer clic en el botón
+// Redirección al hacer clic en el botón de preset
 boton.addEventListener("click", (event) => {
   event.preventDefault();
   window.location.href = "./preset.html";
 });
 
-// Redirección al hacer clic en el botón
+// Redirección al hacer clic en el botón de exterior
 botonExterior.addEventListener("click", (event) => {
   event.preventDefault();
   window.location.href = "./weather.html";
@@ -54,11 +54,11 @@ socket.on("reload", () => {
   location.reload();
 });
 
-// Manejo de errores de Arduino
+// Manejo de errores de Arduino desconectado
 socket.on("err", () => mostrarError());
 socket.on("error", () => mostrarError());
 
-// Función para mostrar un error
+// Función para mostrar un error en la interfaz
 function mostrarError() {
   temperatureDisplay.innerHTML = "Arduino desconectado";
   reconnectButton.style.display = "flex";
@@ -66,7 +66,7 @@ function mostrarError() {
   window.open("./error404.html", "_self", "", true);
 }
 
-// Actualización de la temperatura
+// Actualización de la temperatura en la interfaz
 socket.on("temp", (data) => {
   const temperatura = parseFloat(data).toFixed(1);
   temperatureDisplay.innerHTML = ` ${temperatura} °C`;
@@ -84,7 +84,7 @@ socket.on("temp", (data) => {
   }
 });
 
-// Función para actualizar estilos
+// Función para actualizar estilos de la interfaz
 function actualizarEstilos(color, imagen, emoji) {
   temperatureDisplay.style.color = color;
   fondo.style.background = `${imagen} no-repeat center center fixed`;
@@ -94,7 +94,7 @@ function actualizarEstilos(color, imagen, emoji) {
   temperatureDisplay.innerHTML = ` ${parseFloat(temperatureDisplay.innerHTML)} °C ${emoji} ext ${tempExterior} °C`;
 }
 
-// Función para actualizar el reloj
+// Función para actualizar el reloj en la interfaz
 function actualizarReloj() {
   const ahora = new Date();
   const fecha = `${String(ahora.getDate()).padStart(2, "0")}/${String(
@@ -108,6 +108,6 @@ function actualizarReloj() {
   setTimeout(actualizarReloj, 1000);
 }
 
-// Iniciar el reloj
+// Iniciar el reloj en la interfaz
 actualizarReloj();
 
