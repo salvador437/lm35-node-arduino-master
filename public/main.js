@@ -6,7 +6,7 @@ const boton = document.getElementById("btn-preset");
 const botonExterior = document.getElementById("btn-exterior");
 
 const reconnectButton = document.getElementById("btn-reconnect");
-const temperatureDisplay = document.getElementById("temperature")
+const temperatureDisplay = document.getElementById("temperature");
 const fondo = document.getElementsByTagName("body")[0];
 const titulo = document.querySelector(".container p");
 const reloj = document.getElementById("reloj");
@@ -17,7 +17,7 @@ let ffA = parseInt(localStorage.getItem("ffA"));
 let fcDe = parseInt(localStorage.getItem("fcDe"));
 let fcA = parseInt(localStorage.getItem("fcA"));
 let fsMayorDe = parseInt(localStorage.getItem("fsMayorDe"));
-let tempExterior = localStorage.getItem("temp-ext")
+let tempExterior = localStorage.getItem("temp-ext");
 let ciudad = localStorage.getItem("cityName");
 
 if (reconnectButton) {
@@ -91,7 +91,9 @@ function actualizarEstilos(color, imagen, emoji) {
   titulo.style.color = color;
   reloj.style.color = color;
   temperatureDisplay.style.border = `2px solid ${color}`;
-  temperatureDisplay.innerHTML = ` ${parseFloat(temperatureDisplay.innerHTML)} °C ${emoji} ext ${tempExterior} °C`;
+  temperatureDisplay.innerHTML = ` ${parseFloat(
+    temperatureDisplay.innerHTML
+  )} °C ${emoji} ext ${tempExterior} °C`;
 }
 
 // Función para actualizar el reloj en la interfaz
@@ -110,4 +112,3 @@ function actualizarReloj() {
 
 // Iniciar el reloj en la interfaz
 actualizarReloj();
-

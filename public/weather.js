@@ -53,8 +53,6 @@ async function getTemperature() {
 
     const temperaturaCelsius = (((temperature - 32) * 5) / 9).toFixed(1);
     
-    
-    
     document.getElementById(
       "result"
     ).textContent = `La temperatura en ${cityName} es de ${temperaturaCelsius}°C.`;
@@ -71,12 +69,14 @@ async function getTemperature() {
       "zona-horaria"
     ).textContent = `La zona horaria es de ${zonaHoraria} `;
 
+
     localStorage.setItem("temp-ext", temperaturaCelsius);
     localStorage.setItem("humedad", humedad);
     localStorage.setItem("cityName", cityName);
     localStorage.setItem("latitud", latitud);
     localStorage.setItem("longitud", longitud);
     localStorage.setItem("Zona-horaria", zonaHoraria);
+
 
     window.open(`https://www.google.com/maps?q=${latitud},${longitud}`,"_self","",true);
 
