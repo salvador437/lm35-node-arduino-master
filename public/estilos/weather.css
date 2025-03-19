@@ -57,6 +57,7 @@ button {
 .parrafos {
   border: 2px solid white;
   width: 80%;
+  min-height: 200px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;

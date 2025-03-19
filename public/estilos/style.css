@@ -94,7 +94,7 @@ h1 #temperature {
   margin-right: auto;
   border-radius: 150px;
   background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 25px #fff;
+  box-shadow: 0px 0px 15px #fff;
 }
 
 @media (max-width: 1390px) {
