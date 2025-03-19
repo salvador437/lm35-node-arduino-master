@@ -11,5 +11,5 @@ document.addEventListener("keydown", (event) => {
 });
 
 function salir() {
-  window.open("/index.html","_self","",true);
+  window.location.href = "/index.html";
 }

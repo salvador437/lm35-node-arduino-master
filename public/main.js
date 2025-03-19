@@ -37,6 +37,7 @@ if (reconnectButton) {
 } else {
   console.error('Elemento con ID "btn-reconnect" no encontrado');
 }
+
 // Redirección al hacer clic en el botón de preset
 boton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -63,7 +64,7 @@ function mostrarError() {
   temperatureDisplay.innerHTML = "Arduino desconectado";
   reconnectButton.style.display = "flex";
   temperatureDisplay.style.fontSize = "20px";
-  window.open("./error404.html", "_self", "", true);
+  window.location.href = "error404.html";
 }
 
 // Actualización de la temperatura en la interfaz

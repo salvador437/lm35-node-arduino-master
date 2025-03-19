@@ -27,7 +27,7 @@ lblfca.innerHTML = fcA.value + "°C";
 lblMayorDe.innerHTML = fsMayorDe.value + "°C";
 
 botonSalir.addEventListener("click", () => {
-  window.open("./index.html", "_self", "", true);
+  window.location.href = "./index.html";
 });
 
 ffDe.addEventListener("mousemove", () => {
