@@ -18,7 +18,7 @@ void loop() {
     
     Serial.println(celsiusTemp);
    
-  if(celsiusTemp >= 25) {
+  if(celsiusTemp >= 30) {
     digitalWrite(LED_GREEN, LOW);
     digitalWrite(LED_RED, HIGH);    
   } else {
