@@ -1,5 +1,6 @@
 const city = document.getElementById("cityInput");
 const parrafos = document.querySelector(".parrafos");
+const infoMapa = document.getElementById("mapa");
 
 city.addEventListener("click", (event) => {
   event.preventDefault();
@@ -77,12 +78,15 @@ async function getTemperature() {
     localStorage.setItem("longitud", longitud);
     localStorage.setItem("Zona-horaria", zonaHoraria);
 
-
-    window.open(`https://www.google.com/maps?q=${latitud},${longitud}`,"_blank","",true);
+    
+    
 
   } catch (error) {
     document.getElementById("result").textContent =
       "No se pudo obtener la temperatura. Verifica el nombre de la ciudad o la API key.";
   }
 }
+infoMapa.addEventListener("click", () => {
+  window.open(`https://www.google.com/maps/@41.6334618,2.0633321,3a,75y,229.86h,90t/data=!3m7!1e1!3m5!1suHq3K381unqjUf_pRP9VCA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DuHq3K381unqjUf_pRP9VCA%26yaw%3D229.8561550312585!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D`,"_blank","",true);
+})
   
