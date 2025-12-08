@@ -1,4 +1,3 @@
-
 const http = require("http");
 const express = require("express");
 const SocketIO = require("socket.io");
@@ -14,7 +13,6 @@ const io = SocketIO(server);
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/estilos", express.static(path.join(__dirname, "public/estilos")));
 app.use("/imagenes", express.static(path.join(__dirname, "public/imagenes")));
-
 
 let cont = 0;
 let port;
@@ -64,13 +62,17 @@ const setupSerialPort = () => {
     });
 
     arduinoUno.on("data", (data) => {
-      const temp = `${parseInt(data, 10)} °C`;
+      //const temp = `$(data, 10)} °C`
+
+      const temp = data.toString();
       console.log(temp);
       io.emit("temp", data.toString());
 
       if (fs.existsSync("./temperatura.txt")) {
         const ahora = new Date();
-        if(cont>= 60) {return}
+        if (cont >= 60) {
+          return;
+        }
         const fecha = `${String(ahora.getDate()).padStart(2, "0")}/${String(
           ahora.getMonth() + 1
         ).padStart(2, "0")}/${ahora.getFullYear()}`;
@@ -83,7 +85,7 @@ const setupSerialPort = () => {
         );
         cont++;
       } else {
-        fs.writeFileSync("./temperatura.txt","");
+        fs.writeFileSync("./temperatura.txt", "");
       }
     });
   } catch (err) {
@@ -112,7 +114,7 @@ const closePort = () => {
 // Ruta para restablecer la conexión manualmente
 app.post("/reconnect", (req, res) => {
   console.log("Reconexión solicitada manualmente");
-  setupSerialPort(); 
+  setupSerialPort();
   res.sendStatus(200);
 });
 

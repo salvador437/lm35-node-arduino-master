@@ -2,7 +2,8 @@
 #define LED_RED 12
 #define LED_GREEN 13
 float signalVoltage, celsiusTemp;
-
+int cont = 0;
+float media  = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -13,10 +14,17 @@ void setup() {
 
 
 void loop() {
-    signalVoltage = analogRead(TEMP_SENSOR);
-    celsiusTemp = (5 * signalVoltage * 100) / 1024;
+  signalVoltage = analogRead(TEMP_SENSOR);
+  celsiusTemp = (5 * signalVoltage * 100) / 1024; 
+  media = media + celsiusTemp;
+    cont += 1;
+    if (cont >=5000){
+      Serial.println(media/cont); 
+      cont= 0; 
+      media = 0;
+      delay(1000);
+    }
     
-    Serial.println(celsiusTemp);
    
   if(celsiusTemp >= 30) {
     digitalWrite(LED_GREEN, LOW);
@@ -26,6 +34,6 @@ void loop() {
     digitalWrite(LED_RED, LOW);
   }
  
-  delay(2000); 
+  
 }
   

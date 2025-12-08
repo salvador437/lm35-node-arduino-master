@@ -78,7 +78,7 @@ async function getTemperature() {
     localStorage.setItem("Zona-horaria", zonaHoraria);
 
 
-    window.open(`https://www.google.com/maps?q=${latitud},${longitud}`,"_self","",true);
+    window.open(`https://www.google.com/maps?q=${latitud},${longitud}`,"_blank","",true);
 
   } catch (error) {
     document.getElementById("result").textContent =

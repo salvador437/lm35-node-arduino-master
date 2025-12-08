@@ -13,7 +13,7 @@ La aplicación es lanzada desde el terminal con el siguiente comando:<br>
 <em><b>"npm start"</b></em> (ver el archivo package.json).<br><br>
 
 
-La pantalla de inicio o de entrada, es dependiente de la temperatura y está dividida en cuatro frajas de temperatura que son las siguientes:<br><br>
+La pantalla de inicio o de entrada, es dependiente de la temperatura y está dividida en cuatro franjas de temperatura que son las siguientes:<br><br>
 
 - temperatura < 15 grados Celsius
 - temperatura < 25 grados Celsius y > de 15 grados Celsius.
