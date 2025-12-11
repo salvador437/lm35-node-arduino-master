@@ -19,7 +19,7 @@ async function checkInternetConnection() {
     }
   }
 
-  // Verificar la conexión cada  segundo  53290579Q jav
+  // Verificar la conexión cada  segundo 
   setInterval(checkInternetConnection, 1000);
   checkInternetConnection();
 
