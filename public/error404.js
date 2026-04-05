@@ -1,15 +1,9 @@
 
 
-if (home) {
-  home.addEventListener("click", salir);
-}
+  setTimeout(() => {
+    window.location.href = "/index.html";
+  }, 5000);
+  
 
-document.addEventListener("keydown", (event) => {
-  if (event.ctrlKey && event.key === "z" || event.ctrlKey && event.key === "Z") {
-    window.open("./index.html","_self","",true);
-  }
-});
 
-function salir() {
-  window.location.href = "/index.html";
-}
+

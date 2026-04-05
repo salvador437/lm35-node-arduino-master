@@ -92,9 +92,8 @@ function actualizarEstilos(color, imagen, emoji) {
   titulo.style.color = color;
   reloj.style.color = color;
   temperatureDisplay.style.border = `2px solid ${color}`;
-  temperatureDisplay.innerHTML = ` ${parseFloat(
-    temperatureDisplay.innerHTML
-  )} °C ${emoji} ext ${tempExterior} °C`;
+  temperatureDisplay.innerHTML = ` ${parseFloat(temperatureDisplay.innerHTML)} 
+  °C ${emoji}  ${tempExterior} °C ext `;
 }
 
 // Función para actualizar el reloj en la interfaz
