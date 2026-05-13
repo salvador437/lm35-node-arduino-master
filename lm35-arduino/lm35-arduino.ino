@@ -29,7 +29,6 @@ void loop() {
     delay(1000);
   }
     
-   
   if(celsiusTemp >= 30) {
     digitalWrite(LED_BLUE, LOW);
     digitalWrite(LED_RED, HIGH);    
@@ -37,7 +36,6 @@ void loop() {
     digitalWrite(LED_BLUE, HIGH);
     digitalWrite(LED_RED, LOW);
   }
- 
   
 }
   
